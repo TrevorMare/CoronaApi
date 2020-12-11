@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace CoronaStats.api
+namespace CoronaStats.Api
 {
     public class Program
     {
