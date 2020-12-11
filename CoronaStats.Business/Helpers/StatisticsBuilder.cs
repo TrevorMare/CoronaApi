@@ -13,13 +13,13 @@ namespace CoronaStats.Business.Helpers
         public static IEnumerable<Core.Models.CountryStatistics> BuildCountryStatistics(List<CovidApiResponse> input)
         {
             var result = new List<Core.Models.CountryStatistics>();
-            var continents = input.Where(x => x.Continent != "All").Select(d => d.Continent).Distinct().ToList();
+            var continents = input.Where(x => !string.IsNullOrEmpty(x.Continent) && x.Continent != "All").Select(d => d.Continent).Distinct().ToList();
 
             // Calculate the totals for the global statistics
             
             continents.ForEach(continent =>
             {
-                var continentData = input.Where(d => d.Continent == continent).ToList();
+                var continentData = input.Where(d => d.Continent == continent && d.Continent != d.Country).ToList();
                 // Calculate the totals per continent
                 var continentTotalNewCases = GetTotalNumberOfNewCases(continentData);
                 var continentTotalActiveCases = GetTotalNumberOfActiveCases(continentData);
@@ -70,7 +70,7 @@ namespace CoronaStats.Business.Helpers
         public static IEnumerable<Core.Models.ContinentStatistics> BuildContinentStatistics(List<CovidApiResponse> input)
         {
             var result = new List<Core.Models.ContinentStatistics>();
-            var continents = input.Where(x => x.Continent != "All").Select(d => d.Continent).Distinct().ToList();
+            var continents = input.Where(x => !string.IsNullOrEmpty(x.Continent) && x.Continent != "All").Select(d => d.Continent).Distinct().ToList();
 
             // Calculate the totals for the global statistics
             var globalTotalNewCases = GetTotalNumberOfNewCases(input);
@@ -79,7 +79,7 @@ namespace CoronaStats.Business.Helpers
 
             continents.ForEach(continent => 
             {
-                var continentData = input.Where(d => d.Continent == continent).ToList();
+                var continentData = input.Where(d => d.Continent == continent && d.Continent != d.Country).ToList();
                 
                 // Calculate the continent statistics
                 var continentTotalNewCases = GetTotalNumberOfNewCases(continentData);
