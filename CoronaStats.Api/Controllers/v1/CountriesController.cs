@@ -26,7 +26,7 @@ namespace CoronaStats.Api.Controllers.v1
         #endregion
 
         /// <summary>
-        /// Gets the statistics by continent
+        /// Gets the statistics by country
         /// </summary>
         /// <returns></returns>
         [HttpGet]

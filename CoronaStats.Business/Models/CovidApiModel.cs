@@ -9,9 +9,7 @@ namespace CoronaStats.Business.Models
         [JsonProperty(PropertyName = "get")]
         public string Get { get; set; }
         
-        [JsonProperty(PropertyName = "parameters")]
-        public object[] Parameters { get; set; }
-
+ 
         [JsonProperty(PropertyName = "errors")]
         public object[] Errors { get; set; }
 
