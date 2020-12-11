@@ -1,4 +1,5 @@
 using CoronaStats.Business.StartupExtensions;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,8 @@ namespace CoronaStats.Api
             // Register the business layer objects
             services.UseCoronaStatsBusiness(Configuration);
             
+            // Register the mediator controller
+            services.AddMediatR(typeof(Startup));
             
             services.AddSwaggerGen();
         }

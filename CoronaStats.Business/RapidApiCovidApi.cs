@@ -29,11 +29,21 @@ namespace CoronaStats.Business
         #endregion
 
         #region Interface Methods
+        /// <summary>
+        /// Loads the statisitics per continent
+        /// </summary>
+        /// <param name="country"></param>
+        /// <returns></returns>
         public Task<IEnumerable<ContinentStatistics>> GetContinentStatistics(string country = null)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Loads the statisitics per country
+        /// </summary>
+        /// <param name="country"></param>
+        /// <returns></returns>
         public Task<IEnumerable<CountryStatistics>> GetCountryStatistics(string country = null)
         {
             throw new NotImplementedException();

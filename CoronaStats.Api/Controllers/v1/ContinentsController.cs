@@ -1,3 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoronaStats.Api.Controllers.v1
@@ -12,6 +17,17 @@ namespace CoronaStats.Api.Controllers.v1
     public class ContinentsController : ControllerBase  
     {
 
+        #region Members
+        private readonly IMediator _mediator;
+        #endregion
+
+        #region ctor
+        public ContinentsController(IMediator mediator)
+        {
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        }
+        #endregion
+
         #region Methods
         /// <summary>
         /// Gets the statistics by continent
@@ -19,9 +35,10 @@ namespace CoronaStats.Api.Controllers.v1
         /// <returns></returns>
         [HttpGet]
         [Produces("application/json")]
-        public IActionResult Get()
+        [ProducesResponseType(typeof(IEnumerable<Core.Models.ContinentStatistics>), (int)HttpStatusCode.OK)]
+        public async Task<IEnumerable<Core.Models.ContinentStatistics>> Get(string country = default)
         {
-            return new OkObjectResult("employees from v1 controller"); 
+            return await _mediator.Send(new Domain.Continent.Queries.GetContinentStatisticsRequest(country)); 
         }
         #endregion
 
