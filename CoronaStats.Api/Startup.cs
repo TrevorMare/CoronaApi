@@ -1,18 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using CoronaStats.Business.StartupExtensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace CoronaStats.Api
@@ -30,18 +24,20 @@ namespace CoronaStats.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
+            
+            // Add versioned api controllers
             services.AddApiVersioning(x =>  
             {  
                 x.DefaultApiVersion = new ApiVersion(1, 0);  
                 x.AssumeDefaultVersionWhenUnspecified = true;  
                 x.ReportApiVersions = true;  
             }); 
-
             services.AddVersionedApiExplorer( options => options.GroupNameFormat = "v'v'VVV" );
-            
-            services.Configure<CoronaStats.Core.Config.RapidApiConfig>(Configuration.GetSection("RapidApiConfig"));
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, Api.StartupExtensions.ConfigureSwaggerOptions>();
+
+            // Register the business layer objects
+            services.UseCoronaStatsBusiness(Configuration);
+            
             
             services.AddSwaggerGen();
         }
