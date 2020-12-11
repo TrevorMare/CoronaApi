@@ -42,6 +42,7 @@ namespace CoronaStats.Business.Helpers
                     {
                         Continent = continent,
                         Country = country,
+
                         NewStatistics = new Core.Models.CategoryStatistics()
                         {
                             Total = countryTotalNewCases,
@@ -53,6 +54,7 @@ namespace CoronaStats.Business.Helpers
                             Total = countryTotalActiveCases,
                             Percent = CalculatePercentage(continentTotalActiveCases, countryTotalActiveCases)
                         },
+
                         DeathStatistics = new Core.Models.CategoryStatistics()
                         {
                             Total = countryTotalDeaths,
@@ -99,6 +101,7 @@ namespace CoronaStats.Business.Helpers
                         Total = continentTotalActiveCases,
                         Percent = CalculatePercentage(globalTotalActiveCases, continentTotalActiveCases)
                     },
+
                     DeathStatistics = new Core.Models.CategoryStatistics() 
                     {
                         Total = continentTotalDeaths,
@@ -158,12 +161,18 @@ namespace CoronaStats.Business.Helpers
             return result;
         }
 
-        private static double CalculatePercentage(int total, int subset)
+        /// <summary>
+        /// Calculates a percentage
+        /// </summary>
+        /// <param name="total"></param>
+        /// <param name="subset"></param>
+        /// <returns></returns>
+        private static double? CalculatePercentage(int total, int subset)
         {
 
             if (subset == 0)
             {
-                return 0;
+                return null;
             }
             return ((double)subset / (double)total) * 100;
 
