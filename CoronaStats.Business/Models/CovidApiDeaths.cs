@@ -8,10 +8,10 @@ namespace CoronaStats.Business.Models
 
         #region Properties
 
-        [JsonProperty(PropertyName = "_new")]
+        [JsonProperty(PropertyName = "new")]
         public string New { get; set; }
 
-        [JsonProperty(PropertyName = "_1M_pop")]
+        [JsonProperty(PropertyName = "1M_pop")]
         public string OneMillionPop { get; set; }
 
         [JsonProperty(PropertyName = "total")]

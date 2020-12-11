@@ -38,7 +38,7 @@ namespace CoronaStats.Business
         {
             var apiData = await LoadCovidApiStatistics(country);
 
-            return Helpers.ContinentStatisticsBuilder.BuildStatistics(apiData.Response);
+            return Helpers.StatisticsBuilder.BuildContinentStatistics(apiData.Response);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace CoronaStats.Business
         {
             var apiData = await LoadCovidApiStatistics(country);
 
-            return Helpers.CountryStatisticsBuilder.BuildStatistics(apiData.Response);
+            return Helpers.StatisticsBuilder.BuildCountryStatistics(apiData.Response);
         }
         #endregion
 

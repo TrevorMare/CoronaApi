@@ -9,7 +9,7 @@ namespace CoronaStats.Core.Models
         public int Total { get; set; }
 
         [JsonProperty(PropertyName = "percent")]
-        public int Percent { get; set; }
+        public double Percent { get; set; }
     }
 
 }
