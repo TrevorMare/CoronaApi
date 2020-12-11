@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using CoronaStats.Core.Models;
 using Microsoft.Extensions.Logging;
 
 namespace CoronaStats.Business
@@ -28,7 +29,15 @@ namespace CoronaStats.Business
         #endregion
 
         #region Interface Methods
-       
+        public Task<IEnumerable<ContinentStatistics>> GetContinentStatistics(string country = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<CountryStatistics>> GetCountryStatistics(string country = null)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region Methods
@@ -88,6 +97,8 @@ namespace CoronaStats.Business
 
             return client;
         }
+
+       
         #endregion
 
     }
