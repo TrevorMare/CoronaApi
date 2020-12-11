@@ -33,7 +33,11 @@ namespace CoronaStats.Api
                 x.AssumeDefaultVersionWhenUnspecified = true;  
                 x.ReportApiVersions = true;  
             }); 
-            services.AddVersionedApiExplorer( options => options.GroupNameFormat = "v'v'VVV" );
+            services.AddVersionedApiExplorer( options => 
+            { 
+                options.GroupNameFormat = "'v'VVV";
+                options.SubstituteApiVersionInUrl = true;
+            });
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, Api.StartupExtensions.ConfigureSwaggerOptions>();
 
             // Register the business layer objects

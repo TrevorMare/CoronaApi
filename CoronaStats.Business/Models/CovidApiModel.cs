@@ -1,4 +1,5 @@
 
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace CoronaStats.Business.Models
@@ -18,7 +19,7 @@ namespace CoronaStats.Business.Models
         public int NumberOfResults { get; set; }
 
         [JsonProperty(PropertyName = "response")]
-        public CovidApiResponse[] Response { get; set; }
+        public List<CovidApiResponse> Response { get; set; }
 
     }
 }

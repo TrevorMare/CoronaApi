@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 namespace CoronaStats.Business.Interfaces
 {
 
-    public interface IRapidApiCovidApi
+    public interface IRapidApiCovidStatistics
     {
 
         Task<IEnumerable<Core.Models.ContinentStatistics>> GetContinentStatistics(string country = default);

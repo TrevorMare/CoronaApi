@@ -11,16 +11,16 @@ namespace CoronaStats.Business
     /// <summary>
     /// Business logic to retrieve the Api Data
     /// </summary>
-    internal class RapidApiCovidApi : Interfaces.IRapidApiCovidApi
+    internal class RapidApiCovidStatistics : Interfaces.IRapidApiCovidStatistics
     {
 
         #region Members
-        private readonly ILogger<RapidApiCovidApi> _logger;
+        private readonly ILogger<RapidApiCovidStatistics> _logger;
         private readonly IHttpClientFactory _clientFactory;
         #endregion
 
         #region ctor
-        public RapidApiCovidApi(ILogger<RapidApiCovidApi> logger,
+        public RapidApiCovidStatistics(ILogger<RapidApiCovidStatistics> logger,
                                 IHttpClientFactory clientFactory)
         {
             this._logger = logger;
@@ -34,9 +34,11 @@ namespace CoronaStats.Business
         /// </summary>
         /// <param name="country"></param>
         /// <returns></returns>
-        public Task<IEnumerable<ContinentStatistics>> GetContinentStatistics(string country = null)
+        public async Task<IEnumerable<ContinentStatistics>> GetContinentStatistics(string country = null)
         {
-            throw new NotImplementedException();
+            var apiData = await LoadCovidApiStatistics(country);
+
+            return Helpers.ContinentStatisticsBuilder.BuildStatistics(apiData.Response);
         }
 
         /// <summary>
@@ -44,9 +46,11 @@ namespace CoronaStats.Business
         /// </summary>
         /// <param name="country"></param>
         /// <returns></returns>
-        public Task<IEnumerable<CountryStatistics>> GetCountryStatistics(string country = null)
+        public async Task<IEnumerable<CountryStatistics>> GetCountryStatistics(string country = null)
         {
-            throw new NotImplementedException();
+            var apiData = await LoadCovidApiStatistics(country);
+
+            return Helpers.CountryStatisticsBuilder.BuildStatistics(apiData.Response);
         }
         #endregion
 

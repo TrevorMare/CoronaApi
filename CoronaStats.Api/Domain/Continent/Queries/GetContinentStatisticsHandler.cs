@@ -10,11 +10,11 @@ namespace CoronaStats.Api.Domain.Continent.Queries
     {
 
         #region Members
-        private readonly Business.Interfaces.IRapidApiCovidApi _covidApi;
+        private readonly Business.Interfaces.IRapidApiCovidStatistics _covidApi;
         #endregion
 
         #region ctor
-        public GetContinentStatisticsHandler(Business.Interfaces.IRapidApiCovidApi covidApi)
+        public GetContinentStatisticsHandler(Business.Interfaces.IRapidApiCovidStatistics covidApi)
         {
             _covidApi = covidApi ?? throw new ArgumentNullException(nameof(covidApi));
         }

@@ -29,7 +29,7 @@ namespace CoronaStats.Business.StartupExtensions
             .AddPolicyHandler(LoadHttpClientRetryPolicy());
 
             services.Configure<CoronaStats.Core.Config.RapidApiConfig>(configuration.GetSection("RapidApiConfig"));
-            services.AddScoped<Interfaces.IRapidApiCovidApi, RapidApiCovidApi>();
+            services.AddScoped<Interfaces.IRapidApiCovidStatistics, RapidApiCovidStatistics>();
 
             return services;
         }

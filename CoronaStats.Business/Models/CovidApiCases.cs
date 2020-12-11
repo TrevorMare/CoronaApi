@@ -24,7 +24,7 @@ namespace CoronaStats.Business.Models
         public string OneMillionPop { get; set; }
 
         [JsonProperty(PropertyName = "total")]
-        public int Total { get; set; }
+        public int? Total { get; set; }
 
         #endregion
 
